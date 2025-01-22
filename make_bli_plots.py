@@ -19,8 +19,9 @@ for the_n in the_n_list:
 results_dict = {}
 conc_dict = {}
 
+
 for result in results:
-    if os.stat(f'{result}.txt').st_size > 0:
+    if os.path.isfile(f'{result}.txt') and os.stat(f'{result}.txt').st_size > 0:
         results_dict[result] = pd.read_csv(f'{result}.txt', sep='\t', skiprows=7)
         conc_dict[result] = pd.read_csv(f'{result}.txt', sep='\t', skiprows=0, nrows=1, header=None).iloc[0].tolist()[1:-1]
         conc_dict[result] = [np.float64(f"{num:.1e}") for num in conc_dict[result]]
@@ -116,7 +117,7 @@ for plot_num in list_of_plot_numbers:
     ax.set_xlim(left=0, right=rounded_max_time) 
     y_top = np.ceil(biggest_number / 0.2) * 0.2
     ax.set_ylim(bottom=0, top=y_top)
-    ax.set_yticks(np.linspace(0, y_top, 6))
+    ax.set_yticks(np.linspace(0, y_top, 5))
     ax.set(xlabel="Time (s)", ylabel="Response (nm)")
 
     # make and save fig
