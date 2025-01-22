@@ -114,7 +114,7 @@ for plot_num in list_of_plot_numbers:
     rounded_max_time = np.ceil(max_time / 10) * 10  # Round up to the nearest 10
     ax.set_xticks(np.linspace(0, rounded_max_time, 5))  # Generate 5 evenly spaced x-axis breaks
     ax.set_xlim(left=0, right=rounded_max_time) 
-    y_top = np.ceil(1.1 * biggest_number * 10) / 10  # Round up to the nearest hundredth
+    y_top = np.ceil(biggest_number / 0.2) * 0.2
     ax.set_ylim(bottom=0, top=y_top)
     ax.set_yticks(np.linspace(0, y_top, 6))
     ax.set(xlabel="Time (s)", ylabel="Response (nm)")
